@@ -1,0 +1,2861 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: #0A1628;
+    color: #F8FAFC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+   Header & Navigation Section
+   ========================================== */
+.site-header {
+    background-color: #0A1628;
+    /* Deep navy background */
+    width: 100%;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1000;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Brand Identity (Logo + Title) */
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.brand-link:hover {
+    opacity: 0.95;
+}
+
+.header-logo {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+
+.company-name {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #F8FAFC;
+    /* Crisp off-white */
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+/* Navigation Menu */
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #CBD5E1;
+    /* Light blue/gray */
+    text-decoration: none;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #F8FAFC;
+    font-weight: 600;
+}
+
+/* Subtle Underline for Active/Hover State */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #38BDF8;
+    /* Light blue accent */
+    border-radius: 1px;
+    transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Navigation Dropdown Menu */
+.nav-item.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    margin-left: 4px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+    vertical-align: middle;
+}
+
+.nav-item.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #0A1628;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 2px solid #0284C7;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    min-width: 240px;
+    padding: 8px 0;
+    list-style: none;
+    display: none;
+    z-index: 1100;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #CBD5E1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    color: #FFFFFF;
+    background-color: rgba(2, 132, 199, 0.15);
+}
+
+/* Mobile Navigation Toggle Button */
+.mobile-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 19px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010;
+}
+
+.hamburger-bar {
+    width: 100%;
+    height: 2px;
+    background-color: #CBD5E1;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-nav-toggle.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .site-header {
+        height: 86px;
+        padding: 0 28px;
+    }
+
+    .header-logo {
+        height: 46px;
+    }
+
+    .company-name {
+        font-size: 22px;
+    }
+
+    .nav-list {
+        gap: 28px;
+    }
+}
+
+@media (max-width: 868px) {
+    .site-header {
+        height: 80px;
+        padding: 0 20px;
+    }
+
+    .mobile-nav-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0A1628;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 24px 28px;
+        display: none;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .main-nav.open {
+        display: flex;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        width: 100%;
+        display: block;
+    }
+
+    .nav-item.dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: block;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        min-width: 100%;
+        padding: 4px 0 4px 16px;
+    }
+
+    .dropdown-item {
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #94A3B8;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .dropdown-item:hover {
+        color: #F8FAFC;
+        background-color: transparent;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-link {
+        gap: 12px;
+    }
+
+    .header-logo {
+        height: 40px;
+    }
+
+    .company-name {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================
+   Hero Section - Editorial Corporate Style
+   ========================================== */
+.hero-section {
+    background-color: #F7F8F6;
+    width: 100%;
+    padding: 48px 40px;
+    border-bottom: 1px solid #EAECEB;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 48px;
+}
+
+.hero-text-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.hero-editorial-statement {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    max-width: 540px;
+    text-align: left;
+    margin: 0;
+}
+
+.hero-cta-btn {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 24px;
+    padding: 12px 24px;
+    background-color: #0284C7;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Image Composition */
+.hero-media-column {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-image-frame {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    border: 1px solid rgba(10, 22, 40, 0.1);
+    box-shadow: 0 12px 28px rgba(10, 22, 40, 0.08);
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hero Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 48px 28px 64px 28px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+
+    .hero-editorial-statement {
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 868px) {
+    .hero-section {
+        padding: 40px 20px 56px 20px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .hero-media-column {
+        justify-content: center;
+    }
+
+    .hero-image-frame {
+        max-width: 100%;
+    }
+
+    .hero-editorial-statement {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-editorial-statement {
+        font-size: 18px;
+    }
+
+    .quote-intro {
+        font-size: 13px;
+    }
+
+    .quote-body {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================
+   Company Overview & Pillars Section
+   ========================================== */
+.overview-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 72px 40px 80px 40px;
+    border-top: 1px solid #EAECEB;
+}
+
+.overview-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.overview-header {
+    margin-bottom: 24px;
+}
+
+.overview-brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.tag-line {
+    width: 24px;
+    height: 2px;
+    background-color: #0284C7;
+    display: inline-block;
+}
+
+.tag-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.overview-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: #0A1628;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+}
+
+.title-accent-line {
+    width: 48px;
+    height: 3px;
+    background-color: #0284C7;
+    border-radius: 2px;
+}
+
+.overview-body {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.overview-text-main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.overview-paragraph {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+}
+
+.overview-text-highlight {
+    background-color: #F8FAFC;
+    border-left: 3px solid #0284C7;
+    padding: 24px 28px;
+    border-radius: 0 8px 8px 0;
+    align-self: center;
+}
+
+.highlight-statement {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   Our Approach Section (Clean Light Layout)
+   ========================================== */
+.approach-section {
+    background-color: #FFFFFF;
+    color: #0A1628;
+    width: 100%;
+    padding: 80px 40px 104px 40px;
+    border-top: 1px solid #EAECEB;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.approach-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.approach-header {
+    margin-bottom: 40px;
+}
+
+.approach-brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.approach-main-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #0A1628;
+    letter-spacing: -0.01em;
+}
+
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    align-items: stretch;
+}
+
+.approach-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    padding: 0;
+}
+
+.approach-col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -24px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #E2E8F0;
+}
+
+.approach-col-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+
+.approach-col-text {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+}
+
+.approach-multi-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Overview & Approach Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .overview-section {
+        padding: 64px 28px;
+    }
+
+    .overview-body {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .approach-section {
+        padding: 64px 28px 88px 28px;
+    }
+
+    .approach-grid {
+        gap: 32px;
+    }
+
+    .approach-col:not(:last-child)::after {
+        right: -16px;
+    }
+
+    .approach-main-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .overview-section {
+        padding: 48px 20px 56px 20px;
+    }
+
+    .approach-section {
+        padding: 48px 20px 64px 20px;
+    }
+
+    .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .approach-col {
+        padding: 0 !important;
+    }
+
+    .approach-col:not(:last-child)::after {
+        display: none;
+    }
+
+    .overview-title {
+        font-size: 30px;
+    }
+
+    .highlight-statement {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overview-section {
+        padding: 56px 20px 64px 20px;
+    }
+
+    .overview-paragraph {
+        font-size: 15px;
+    }
+
+    .overview-text-highlight {
+        padding: 4px 0 4px 18px;
+    }
+}
+
+/* ==========================================
+   Footer Section
+   ========================================== */
+.site-footer {
+    background-color: #0A1628;
+    /* Deep navy background */
+    color: #F8FAFC;
+    width: 100%;
+    padding-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 40px 64px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 0.8fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Brand Column */
+.footer-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+}
+
+.footer-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-company-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #F8FAFC;
+    letter-spacing: 0.02em;
+}
+
+/* Contact Column */
+.footer-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0284C7;
+    /* Teal accent */
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #CBD5E1;
+    line-height: 1.6;
+    display: flex;
+    gap: 8px;
+}
+
+.contact-label {
+    font-weight: 600;
+    color: #F8FAFC;
+}
+
+.contact-link {
+    color: #CBD5E1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: #0284C7;
+}
+
+.contact-address {
+    font-style: normal;
+    color: #CBD5E1;
+}
+
+/* Social Column */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-icon-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #CBD5E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-icon-link:hover {
+    background-color: #0284C7;
+    border-color: #0284C7;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 28px 40px;
+    background-color: #071222;
+}
+
+.footer-bottom-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #94A3B8;
+}
+
+.copyright-link {
+    color: #CBD5E1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.copyright-link:visited {
+    color: #CBD5E1;
+}
+
+.copyright-link:hover,
+.copyright-link:focus {
+    color: #0284C7;
+    text-decoration: none;
+}
+
+/* Footer Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding-top: 52px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 36px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 32px 48px 32px;
+        margin: 0 auto;
+    }
+
+    .footer-column {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-brand-col {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-brand-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    .footer-logo {
+        height: 44px;
+        width: auto;
+        flex-shrink: 0;
+        object-fit: contain;
+    }
+
+    .footer-company-name {
+        font-size: 21px;
+        line-height: 1.25;
+        color: #F8FAFC;
+        text-align: center;
+    }
+
+    .footer-heading {
+        margin-bottom: 16px;
+        font-size: 13px;
+        text-align: center;
+        align-self: center;
+    }
+
+    .contact-details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-item {
+        font-size: 14.5px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .contact-item:has(address),
+    .contact-item:has(.contact-address) {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .contact-label {
+        flex-shrink: 0;
+        text-align: center;
+    }
+
+    .contact-address {
+        text-align: center;
+        margin: 0;
+        font-style: normal;
+        line-height: 1.5;
+    }
+
+    .social-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }
+
+    .footer-bottom {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 22px 32px;
+        background-color: #071222;
+    }
+
+    .footer-bottom-container {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .copyright-text {
+        font-size: 13.5px;
+        text-align: center;
+        width: 100%;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding-top: 44px;
+    }
+
+    .footer-container {
+        padding: 0 24px 40px 24px;
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        padding: 20px 24px;
+    }
+
+    .footer-company-name {
+        font-size: 19px;
+    }
+}
+
+/* ==========================================
+   About Us Page Styles (Refined & Grid Aligned)
+   ========================================== */
+
+.about-hero-section,
+.vision-mission-section,
+.strategy-banner-section,
+.reliability-editorial-section,
+.why-ak-section {
+    width: 100%;
+}
+
+.about-hero-container,
+.vision-mission-container,
+.strategy-banner-container,
+.reliability-editorial-container,
+.why-ak-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+/* SECTION 1 — ABOUT AK IT SERVICES */
+.about-hero-section {
+    background-color: #F7F8F6;
+    padding: 44px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.about-hero-container {
+    display: grid;
+    grid-template-columns: 58% 1fr;
+    gap: 36px;
+    align-items: center;
+}
+
+.about-hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.about-hero-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+}
+
+.about-hero-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 100%;
+}
+
+.about-hero-paragraphs p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+    text-align: left;
+}
+
+/* Right Column Refined Info Card */
+.about-hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.visual-card-wrapper {
+    background: #0A1628;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 28px 26px;
+    color: #F8FAFC;
+    box-shadow: 0 12px 28px rgba(10, 22, 40, 0.1);
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.visual-card-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0284C7 0%, #38BDF8 100%);
+}
+
+.visual-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.visual-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgba(2, 132, 199, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.visual-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #38BDF8;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.visual-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.35;
+    margin-bottom: 16px;
+}
+
+.visual-pillars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pillar-point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pillar-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #38BDF8;
+    flex-shrink: 0;
+}
+
+.visual-pillars-list .pillar-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #E2E8F0;
+}
+
+/* SECTION 2 — VISION & MISSION (Clean Two-Column Editorial Layout) */
+.vision-mission-section {
+    background-color: #FFFFFF;
+    padding: 32px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.vision-mission-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.vm-editorial-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.vm-vertical-divider {
+    width: 1px;
+    background: linear-gradient(180deg, rgba(2, 132, 199, 0.12) 0%, rgba(2, 132, 199, 0.4) 50%, rgba(2, 132, 199, 0.12) 100%);
+    align-self: stretch;
+}
+
+.vm-block-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.vm-number-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.1em;
+}
+
+.vm-label-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.vm-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.vm-statement-wrapper {
+    border-left: 3px solid #0284C7;
+    padding-left: 16px;
+    margin-top: 2px;
+    max-width: 480px;
+    transition: border-color 0.25s ease;
+}
+
+.vm-editorial-col:hover .vm-statement-wrapper {
+    border-color: #38BDF8;
+}
+
+.vm-quote-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18.5px;
+    font-weight: 500;
+    font-style: normal;
+    color: #0A1628;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* SECTION 3 — STRATEGY BANNER */
+.strategy-banner-section {
+    background-color: #0A1628;
+    color: #F8FAFC;
+    padding: 28px 40px;
+}
+
+.strategy-banner-container {
+    display: grid;
+    grid-template-columns: 180px auto 1fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.strategy-banner-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.strategy-badge-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.strategy-badge {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #38BDF8;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.strategy-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.25;
+}
+
+.strategy-vertical-divider {
+    width: 1px;
+    min-height: 44px;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.15) 0%, rgba(56, 189, 248, 0.5) 50%, rgba(56, 189, 248, 0.15) 100%);
+    align-self: stretch;
+}
+
+.strategy-banner-right {
+    display: flex;
+    align-items: center;
+}
+
+.strategy-quote-box {
+    max-width: 680px;
+}
+
+.strategy-quote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 19px;
+    font-weight: 500;
+    font-style: italic;
+    color: #F1F5F9;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* SECTION 4 — EFFICIENT, SECURE & RELIABLE */
+.reliability-editorial-section {
+    background-color: #F7F8F6;
+    padding: 28px 40px 32px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.reliability-editorial-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.reliability-col-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-heading-dark {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #0A1628 !important;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.reliability-statement-box {
+    border-left: 3px solid #0284C7;
+    padding-left: 16px;
+    margin-top: 10px;
+    max-width: 440px;
+    transition: border-color 0.25s ease;
+}
+
+.reliability-editorial-section:hover .reliability-statement-box {
+    border-color: #38BDF8;
+}
+
+.reliability-lead-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18.5px;
+    font-weight: 500;
+    font-style: italic;
+    color: #0A1628;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.reliability-col-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.reliability-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.reliability-feature-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #E2E8F0;
+    transition: transform 0.25s ease;
+}
+
+.reliability-feature-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.reliability-feature-item:hover {
+    transform: translateX(4px);
+}
+
+.rel-feature-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.rel-feature-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0A1628;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.rel-feature-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.55;
+    text-align: left;
+}
+
+/* SECTION 5 — WHY CHOOSE US (WHY AK?) */
+.why-ak-section {
+    background-color: #FFFFFF;
+    padding: 44px 40px 56px 40px;
+}
+
+.why-ak-header {
+    margin-bottom: 24px;
+}
+
+.why-ak-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.why-card-1,
+.why-card-2,
+.why-card-3 {
+    grid-column: span 2;
+}
+
+.why-card-4 {
+    grid-column: 2 / span 2;
+}
+
+.why-card-5 {
+    grid-column: 4 / span 2;
+}
+
+.why-card {
+    position: relative;
+    padding: 22px 24px;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.why-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(10, 22, 40, 0.06);
+    border-color: #CBD5E1;
+}
+
+.why-card-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.why-card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.why-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: rgba(2, 132, 199, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.28s ease;
+}
+
+.why-card:hover .why-card-icon {
+    background-color: rgba(2, 132, 199, 0.16);
+}
+
+.why-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: #0A1628;
+}
+
+.why-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Sections display naturally and immediately without entrance animation */
+.reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* About Us Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .about-hero-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .about-hero-visual {
+        justify-content: flex-start;
+    }
+
+    .visual-card-wrapper {
+        max-width: 100%;
+    }
+
+    .reliability-editorial-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .reliability-col-right {
+        padding-top: 0;
+    }
+
+    .strategy-banner-container {
+        grid-template-columns: 180px 1fr;
+        gap: 24px;
+    }
+
+    .why-ak-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 868px) {
+    .vision-mission-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .vm-vertical-divider {
+        display: none;
+    }
+
+    .strategy-banner-section {
+        padding: 44px 24px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .strategy-banner-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .strategy-vertical-divider {
+        display: none;
+    }
+
+    .strategy-banner-left {
+        width: 100%;
+    }
+
+    .strategy-banner-right {
+        width: 100%;
+    }
+
+    .strategy-quote-box {
+        border-left: 3px solid #0284C7;
+        padding-left: 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .strategy-quote {
+        font-size: 18px;
+        line-height: 1.55;
+    }
+
+    .about-hero-section,
+    .vision-mission-section,
+    .reliability-editorial-section,
+    .why-ak-section {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .why-ak-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .about-hero-title,
+    .section-heading-dark {
+        font-size: 26px;
+    }
+}
+
+/* ==========================================
+   Services Page Styles
+   ========================================== */
+.services-intro-section {
+    background-color: #F7F8F6;
+    width: 100%;
+    padding: 56px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.services-intro-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.services-intro-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.services-brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.services-main-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+}
+
+.services-intro-paragraph {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+    max-width: 580px;
+}
+
+/* Right Column Professional Visual Card */
+.services-intro-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.services-visual-card {
+    background: #0A1628;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 28px 26px;
+    color: #F8FAFC;
+    box-shadow: 0 12px 28px rgba(10, 22, 40, 0.08);
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-visual-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0284C7 0%, #38BDF8 100%);
+}
+
+.services-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.services-icon-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgba(2, 132, 199, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.services-visual-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #38BDF8;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.services-visual-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.35;
+    margin-bottom: 16px;
+}
+
+.services-pillars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.services-pillar-point {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.services-pillar-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #38BDF8;
+    flex-shrink: 0;
+}
+
+.services-pillar-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #E2E8F0;
+}
+
+/* Detailed Services Section */
+.services-details-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 60px 40px 96px 40px;
+}
+
+.services-details-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.service-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 52px;
+    align-items: center;
+    padding-bottom: 64px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.service-block:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Alternating Image & Text Alignment */
+.service-block.img-left-text-right .service-image-wrapper {
+    order: 1;
+    justify-self: start;
+}
+
+.service-block.img-left-text-right .service-text-content {
+    order: 2;
+}
+
+.service-block.text-left-img-right .service-image-wrapper {
+    justify-self: end;
+}
+
+.service-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.service-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #0A1628;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+}
+
+.service-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.service-title-link:hover {
+    color: #0284C7;
+}
+
+.service-paragraph {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.58;
+    margin-bottom: 12px;
+}
+
+.service-list-intro {
+    font-weight: 600;
+    color: #0A1628;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.service-bullet-list {
+    list-style: none;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.service-bullet-list li {
+    position: relative;
+    padding-left: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #0A1628;
+    line-height: 1.5;
+}
+
+.service-bullet-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0284C7;
+}
+
+/* Service Image Styling */
+.service-image-wrapper {
+    width: 100%;
+    max-width: 440px;
+    /* ~25-30% smaller illustration size */
+    position: relative;
+    border-radius: 0;
+    border: 1px solid rgba(10, 22, 40, 0.1);
+    box-shadow: 0 16px 32px rgba(10, 22, 40, 0.08);
+    overflow: hidden;
+}
+
+.service-image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+/* Services Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .service-block {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 72px;
+    }
+
+    .service-block.img-left-text-right .service-image-wrapper {
+        order: 2;
+    }
+
+    .service-block.img-left-text-right .service-text-content {
+        order: 1;
+    }
+
+    .services-main-title {
+        font-size: 36px;
+    }
+
+    .service-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only-br {
+        display: none;
+    }
+
+    .services-intro-section {
+        padding: 40px 20px 48px 20px;
+    }
+
+    .services-intro-container {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .services-intro-left {
+        width: 100%;
+    }
+
+    .services-main-title {
+        font-size: 34px;
+        line-height: 1.25;
+        margin-bottom: 14px;
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    .services-intro-paragraph {
+        font-size: 15.5px;
+        line-height: 1.6;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .services-intro-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .services-visual-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .services-details-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-main-title {
+        font-size: 28px;
+    }
+
+    .services-visual-card {
+        padding: 24px 20px;
+    }
+
+    .services-visual-title {
+        font-size: 17px;
+    }
+}
+
+/* ==========================================
+   Contact Us Page Styles
+   ========================================== */
+/* ==========================================
+   Contact Us Page Styles
+   ========================================== */
+.contact-intro-section {
+    background-color: #F7F8F6;
+    width: 100%;
+    padding: 64px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.contact-intro-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.contact-brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.contact-main-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    max-width: 820px;
+}
+
+.contact-hero-subtitle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16.5px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+    max-width: 680px;
+}
+
+/* Contact Details & Form Section */
+.contact-content-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 72px 40px 96px 40px;
+}
+
+.contact-content-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 64px;
+    align-items: start;
+}
+
+/* Left Column: Contact Details */
+.contact-info-header {
+    margin-bottom: 20px;
+}
+
+.contact-info-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.contact-section-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #0A1628;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+}
+
+.contact-info-desc {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15.5px;
+    font-weight: 400;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 480px;
+}
+
+.contact-info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.company-legal-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A1628;
+    letter-spacing: -0.01em;
+}
+
+.info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.info-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-icon-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(2, 132, 199, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.info-address {
+    font-family: 'Inter', sans-serif;
+    font-size: 15.5px;
+    font-weight: 400;
+    color: #334155;
+    font-style: normal;
+    line-height: 1.6;
+    padding-left: 36px;
+}
+
+.info-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #0A1628;
+    text-decoration: none;
+    padding-left: 36px;
+    transition: color 0.2s ease;
+}
+
+.info-link:hover {
+    color: #0284C7;
+}
+
+/* Right Column: Contact Form */
+.contact-form-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 40px 36px;
+    box-shadow: 0 4px 16px rgba(10, 22, 40, 0.03);
+}
+
+.contact-form-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0A1628;
+    margin-bottom: 24px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0A1628;
+}
+
+.form-input,
+.form-textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #0A1628;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    padding: 12px 16px;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #0284C7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+.btn-submit {
+    align-self: flex-start;
+    background-color: #0284C7;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    margin-top: 4px;
+}
+
+.btn-submit:hover {
+    background-color: #0369A1;
+    transform: translateY(-1px);
+}
+
+/* Contact Us Responsive Breakpoints */
+@media (max-width: 992px) {
+    .contact-content-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-main-title {
+        font-size: 32px;
+    }
+
+    .contact-form-card {
+        padding: 32px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .contact-intro-section,
+    .contact-content-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .contact-intro-section {
+        padding-top: 56px;
+        padding-bottom: 64px;
+    }
+}
+
+/* Why Choose Us Responsive Media Queries */
+@media (max-width: 992px) {
+    .why-ak-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-card-1,
+    .why-card-2,
+    .why-card-3,
+    .why-card-4,
+    .why-card-5 {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .why-ak-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Active Dropdown Link State */
+.dropdown-item.active-dropdown {
+    color: #FFFFFF;
+    background-color: rgba(2, 132, 199, 0.25);
+    font-weight: 600;
+}
+
+/* ==========================================
+   Dedicated Single Service Page Styles
+   ========================================== */
+.single-service-hero {
+    background-color: #F7F8F6;
+    width: 100%;
+    padding: 64px 40px;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.single-service-hero-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.single-service-hero-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: #0A1628;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+}
+
+.single-service-hero-subtitle {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.65;
+    max-width: 780px;
+}
+
+.single-service-content-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 80px 40px;
+}
+
+.single-service-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.single-service-cta {
+    background-color: #0A1628;
+    color: #F8FAFC;
+    width: 100%;
+    padding: 64px 40px;
+}
+
+.single-service-cta-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.single-service-cta-text {
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+}
+
+.cta-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284C7;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.cta-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.cta-subheading {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #CBD5E1;
+    line-height: 1.6;
+}
+
+.single-service-cta-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: #0284C7;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.single-service-cta-btn:hover {
+    background-color: #0369A1;
+}
+
+@media (max-width: 868px) {
+    .single-service-cta-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .single-service-hero-title {
+        font-size: 32px;
+    }
+
+    .cta-heading {
+        font-size: 24px;
+    }
+}
+
+/* ==========================================
+   Services Main Overview Grid Section
+   ========================================== */
+.services-overview-section {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 80px 40px 104px 40px;
+}
+
+.services-overview-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.services-overview-header {
+    text-align: center;
+    margin-bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.services-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.service-overview-card {
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.service-overview-card:hover {
+    border-color: #CBD5E1;
+    box-shadow: 0 12px 24px rgba(10, 22, 40, 0.06);
+    transform: translateY(-2px);
+}
+
+.service-card-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: rgba(2, 132, 199, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.service-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0A1628;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.service-card-desc {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
+
+.service-card-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #0284C7;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.service-card-link:hover {
+    color: #0369A1;
+    gap: 10px;
+}
+
+@media (max-width: 868px) {
+    .services-overview-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .service-overview-card {
+        padding: 28px 24px;
+    }
+}
+
+/* Business Intelligence Page Specific Spacing & Standalone CTA */
+.bi-page-content {
+    padding-top: 72px;
+    padding-bottom: 72px;
+}
+
+.standalone-cta-wrapper {
+    background-color: #F7F8F6;
+    width: 100%;
+    padding: 32px 40px 80px 40px;
+    border-top: 1px solid #EAECEB;
+    border-bottom: 1px solid #EAECEB;
+}
+
+.standalone-cta-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.single-service-cta-card {
+    background-color: #0A1628;
+    border-radius: 8px;
+    padding: 56px 48px;
+    color: #F8FAFC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    box-shadow: 0 12px 32px rgba(10, 22, 40, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.single-service-cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0284C7 0%, #38BDF8 100%);
+}
+
+@media (max-width: 868px) {
+    .standalone-cta-wrapper {
+        padding: 24px 20px 56px 20px;
+    }
+
+    .single-service-cta-card {
+        padding: 36px 28px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+}
+
+/* ==========================================
+   FINAL TEXT & GRID ALIGNMENT CORRECTIONS
+   ========================================== */
+
+/* Keep all major content blocks on the same 1240px grid */
+.overview-container,
+.footer-container,
+.footer-bottom-container,
+.about-hero-container,
+.vision-mission-container,
+.strategy-banner-container,
+.reliability-editorial-container,
+.why-ak-container,
+.services-details-container {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Client-requested paragraph alignment:
+   long-form body copy should have a clean left and right edge. */
+.hero-editorial-statement,
+.overview-paragraph,
+.about-hero-paragraphs p,
+.services-intro-paragraph,
+.service-paragraph,
+.service-list-intro,
+.contact-info-desc {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+}
+
+/* Keep short UI/card copy intentionally left aligned so it does not look
+   artificially stretched across short lines. */
+.approach-col-text,
+.service-card-desc,
+.rel-feature-text,
+.why-text,
+.cta-subheading {
+    text-align: left;
+}
+
+/* Ensure the hero columns are visibly balanced and vertically centered. */
+.hero-container {
+    align-items: center;
+}
+
+.hero-text-column {
+    align-self: center;
+}
+
+.hero-media-column {
+    align-self: center;
+}
+
+/* Make the main overview columns share a clean vertical alignment. */
+.overview-body {
+    align-items: center;
+}
+
+/* Prevent justified copy from creating accidental overflow on narrow screens. */
+.hero-editorial-statement,
+.overview-paragraph,
+.about-hero-paragraphs p,
+.services-intro-paragraph,
+.service-paragraph,
+.service-list-intro,
+.contact-info-desc {
+    overflow-wrap: break-word;
+}
+
+/* ==========================================
+   FINAL SITE-WIDE BODY TEXT ALIGNMENT PASS
+   Alignment only — no content/design changes.
+   ========================================== */
+
+/* Long-form paragraphs across ALL pages */
+.about-hero-paragraphs p,
+.overview-paragraph,
+.hero-editorial-statement,
+.services-intro-paragraph,
+.service-paragraph,
+.contact-hero-subtitle,
+.contact-info-desc,
+.single-service-hero-subtitle,
+.rel-feature-text,
+.why-text {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+/* Main service-page text blocks: keep image/text columns aligned */
+.services-details-container .service-block,
+.single-service-container .service-block {
+    align-items: center;
+}
+
+.services-details-container .service-text-content,
+.single-service-container .service-text-content {
+    width: 100%;
+    min-width: 0;
+}
+
+.services-details-container .service-paragraph,
+.single-service-container .service-paragraph {
+    max-width: 100%;
+}
+
+/* About page long-form content should share the same readable text edge */
+.about-hero-paragraphs {
+    width: 100%;
+    max-width: 680px;
+}
+
+/* Contact intro/details paragraphs */
+.contact-intro-container,
+.contact-content-container {
+    box-sizing: border-box;
+}
+
+/* Consistent desktop content boundaries on every page */
+.header-container,
+.hero-container,
+.overview-container,
+.approach-container,
+.about-hero-container,
+.vision-mission-container,
+.strategy-banner-container,
+.reliability-editorial-container,
+.why-ak-container,
+.services-intro-container,
+.services-details-container,
+.services-overview-container,
+.contact-intro-container,
+.contact-content-container,
+.single-service-hero-container,
+.single-service-container,
+.single-service-cta-container,
+.standalone-cta-container,
+.footer-container,
+.footer-bottom-container {
+    box-sizing: border-box;
+}
+
+/* Prevent the right column from becoming visually detached from the text */
+.hero-media-column,
+.services-intro-right,
+.about-hero-visual,
+.service-image-wrapper {
+    align-self: center;
+}
+
+/* Keep short UI copy left aligned */
+.service-title,
+.service-number,
+.service-bullet-list,
+.service-card-title,
+.service-card-link,
+.approach-col-title,
+.contact-section-title,
+.contact-info-eyebrow,
+.contact-brand-tag,
+.single-service-hero-title,
+.cta-heading,
+.cta-eyebrow,
+.cta-subheading,
+.vm-title,
+.vm-quote-text,
+.strategy-quote,
+.reliability-lead-text {
+    text-align: left;
+}
+
+@media (max-width: 767px) {
+    /* Keep mobile text readable while preserving the desktop client's justified layout. */
+    .hero-editorial-statement,
+    .overview-paragraph,
+    .about-hero-paragraphs p,
+    .services-intro-paragraph,
+    .service-paragraph,
+    .contact-hero-subtitle,
+    .contact-info-desc,
+    .single-service-hero-subtitle,
+    .rel-feature-text,
+    .why-text {
+        text-align: left;
+        text-align-last: auto;
+    }
+
+    .services-details-container .service-block,
+    .single-service-container .service-block {
+        align-items: stretch;
+    }
+}
+
+/* FINAL CLIENT FIX — Why AK? card text alignment only */
+.why-ak-section .why-card .why-text {
+    text-align: left !important;
+    text-align-last: auto !important;
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+}
+
+/* FINAL — About page text alignment only */
+.about-hero-paragraphs p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: left;
+    word-spacing: normal;
+    letter-spacing: normal;
+}
